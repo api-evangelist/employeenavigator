@@ -1,0 +1,144 @@
+generated: '2026-08-06'
+method: probed
+source: https://www.employeenavigator.com/identity/.well-known/openid-configuration
+docs: https://www.employeenavigator.com/security/
+notes: >-
+  Derived verbatim from the anonymously-served OpenID Connect discovery document
+  at the Employee Navigator identity host, not from an OpenAPI securitySchemes
+  block — Employee Navigator publishes no public OpenAPI. The server is a Duende
+  IdentityServer instance mounted at /identity on the apex web host and fronts
+  every named Employee Navigator platform API service (see
+  scopes/employeenavigator-scopes.yml).
+summary:
+  types:
+  - oauth2
+  - openIdConnect
+  api_key_in: []
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+  - refreshToken
+  - implicit
+  - deviceCode
+  - ciba
+  bearer_format: JWT
+  scope_count: 66
+schemes:
+- name: OpenIDConnect
+  type: openIdConnect
+  openIdConnectUrl: https://www.employeenavigator.com/identity/.well-known/openid-configuration
+  issuer: https://www.employeenavigator.com/identity
+  sources:
+  - well-known/employeenavigator-openid-configuration.json
+- name: OAuth2
+  type: oauth2
+  sources:
+  - well-known/employeenavigator-openid-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://www.employeenavigator.com/identity/connect/authorize
+    tokenUrl: https://www.employeenavigator.com/identity/connect/token
+    refreshUrl: https://www.employeenavigator.com/identity/connect/token
+  - flow: clientCredentials
+    tokenUrl: https://www.employeenavigator.com/identity/connect/token
+  - flow: implicit
+    authorizationUrl: https://www.employeenavigator.com/identity/connect/authorize
+  - flow: deviceCode
+    deviceAuthorizationUrl: https://www.employeenavigator.com/identity/connect/deviceauthorization
+    tokenUrl: https://www.employeenavigator.com/identity/connect/token
+    grant_type: urn:ietf:params:oauth:grant-type:device_code
+  - flow: ciba
+    backchannelAuthenticationUrl: https://www.employeenavigator.com/identity/connect/ciba
+    grant_type: urn:openid:params:grant-type:ciba
+    delivery_modes:
+    - poll
+endpoints:
+  issuer: https://www.employeenavigator.com/identity
+  authorization: https://www.employeenavigator.com/identity/connect/authorize
+  token: https://www.employeenavigator.com/identity/connect/token
+  userinfo: https://www.employeenavigator.com/identity/connect/userinfo
+  jwks: https://www.employeenavigator.com/identity/.well-known/openid-configuration/jwks
+  introspection: https://www.employeenavigator.com/identity/connect/introspect
+  revocation: https://www.employeenavigator.com/identity/connect/revocation
+  end_session: https://www.employeenavigator.com/identity/connect/endsession
+  check_session_iframe: https://www.employeenavigator.com/identity/connect/checksession
+  device_authorization: https://www.employeenavigator.com/identity/connect/deviceauthorization
+  backchannel_authentication: https://www.employeenavigator.com/identity/connect/ciba
+client_authentication:
+- client_secret_basic
+- client_secret_post
+proof_of_possession:
+  pkce: true
+  pkce_methods:
+  - plain
+  - S256
+  dpop: true
+  dpop_signing_algs:
+  - RS256
+  - RS384
+  - RS512
+  - PS256
+  - PS384
+  - PS512
+  - ES256
+  - ES384
+  - ES512
+tokens:
+  id_token_signing_algs:
+  - RS256
+  subject_types:
+  - public
+  offline_access: true
+  request_object_supported: true
+logout:
+  frontchannel_logout: true
+  frontchannel_logout_session: true
+  backchannel_logout: true
+  backchannel_logout_session: true
+claims:
+- sub
+- name
+- family_name
+- given_name
+- middle_name
+- nickname
+- preferred_username
+- profile
+- picture
+- website
+- gender
+- birthdate
+- zoneinfo
+- locale
+- updated_at
+- email
+- email_verified
+prompt_values:
+- none
+- login
+- consent
+- select_account
+response_types:
+- code
+- token
+- id_token
+- id_token token
+- code id_token
+- code token
+- code id_token token
+response_modes:
+- form_post
+- query
+- fragment
+x-evidence:
+  fetched: '2026-08-06'
+  url: https://www.employeenavigator.com/identity/.well-known/openid-configuration
+  http_status: 200
+  content_type: application/json; charset=UTF-8
+x-access:
+  client_registration: manual
+  note: >-
+    No dynamic client registration endpoint is advertised. API client
+    credentials are issued to carriers, payroll companies and other partners
+    through Employee Navigator's partner onboarding; there is no public
+    self-service developer signup.

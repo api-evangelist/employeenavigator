@@ -1,0 +1,106 @@
+# Employee Navigator
+
+> Employee Navigator is a benefits administration and HR software platform (Bethesda, Maryland) used by
+> insurance brokers, agencies and employers to run open enrollment, new hire onboarding, ACA reporting,
+> HR management, PTO tracking and integrated payroll. Its integration layer connects employer benefit
+> data to 600+ insurance carriers, payroll providers, TPAs and agency management systems through EDI
+> ANSI 834 files, data-exchange feeds and a partner REST API program.
+
+## What is and is not public
+
+Employee Navigator publishes **no public OpenAPI, no public API reference, and no self-service developer
+portal.** The Company Integration API and the Company Benefit Details API — announced in 2022 and built
+with Guardian Life, Principal Financial Group and other carriers — are released to partners through
+Employee Navigator's technical onboarding. Prospective API partners are directed to
+sales@employeenavigator.com.
+
+What IS public and machine-readable is the OpenID Connect discovery document for the authorization
+server that fronts every Employee Navigator API service. It advertises 66 scopes, and each non-standard
+scope names a distinct platform API service — the clearest public map of the API surface available
+without partner credentials.
+
+Do not infer request shapes, field names, pagination, versioning, idempotency or error formats for this
+provider. They are not published. Anything claiming to document them is not sourced from Employee
+Navigator.
+
+## APIs
+
+- [Employee Navigator Identity (OpenID Connect)](https://www.employeenavigator.com/identity): OAuth 2.0 /
+  OIDC authorization server (Duende IdentityServer). Supports authorization code, client credentials,
+  refresh token, implicit, device code and CIBA grants; PKCE (S256); DPoP; token introspection and
+  revocation; front-channel and back-channel logout.
+- [Employee Navigator Partner API](https://www.employeenavigator.com/api): OAuth-protected partner REST
+  service root. `GET /api/health` answers `Healthy` anonymously; every resource path requires a partner
+  token.
+
+## Machine-readable artifacts
+
+- [OpenID Connect discovery document](https://www.employeenavigator.com/identity/.well-known/openid-configuration)
+- [JSON Web Key Set](https://www.employeenavigator.com/identity/.well-known/openid-configuration/jwks)
+
+## API scope surface (from the discovery document)
+
+Company integration: MasterCompanyIntegrationApi, CarrierCompanyIntegrationApi,
+CarrierCompanyIntegrationConnectionApi, QuotingCompanyIntegrationApi, PayrollCompanyIntegrationApi,
+PaycorCompanyIntegrationApi, CompanyIdentifierReplacementApi
+
+Company and plan configuration: CompanyManagementApi, CompanyConfigurationApi,
+PlanListConfigurationApi, PlanListManagementApi, HealthPlanConfigurationApi, HealthPlanManagementApi,
+SupplementalPlanConfigurationApi, SupplementalPlanManagementApi, MedicalSavingsPlanConfigurationApi,
+CafeteriaPlanConfigurationApi, CafeteriaPlanManagementApi, GroupLifePlanConfigurationApi,
+GroupLifePlanManagementApi, GroupDisabilityPlanConfigurationApi, GroupDisabilityPlanManagementApi,
+VoluntaryLifePlanConfigurationApi, VoluntaryLifePlanManagementApi,
+VoluntaryDisabilityPlanConfigurationApi, VoluntaryDisabilityPlanManagementApi, RatesServiceApi
+
+Employee and benefits: EmployeeProfileApi, EmployeeProfileConfigurationApi,
+EmployeeProfileManagementApi, EmployeeProfilePayrollApi, EmployeeProfilePayrollConfigurationApi,
+EmployeeProfilePayrollManagementApi, EmployeeBenefitsManagementApi, CarrierMemberBenefitApi
+
+Carrier and agency: CarrierConfigurationApi, CarrierListManagementApi, AgencyManagementApi,
+AgencyConfigurationApi, QuoteCensusApi, QuotingConfigurationApi
+
+Evidence of insurability and COBRA: EvidenceOfInsurabilityApi, EvidenceOfInsurabilityNotificationApi,
+CobraConfigurationApi, CobraNotificationApi
+
+Events, audit and sync: WebhookApi, MasterNotificationApi, MasterPushNotificationApi,
+CarrierNotificationApi, CarrierPushNotificationApi, QuotingNotificationApi,
+QuotingPushNotificationApi, AgencyNotificationApi, PayrollNotificationApi,
+PayrollEmployeeNotificationApi, MasterDataAuditApi, MasterDataSyncApi, CarrierDataAuditApi,
+CarrierDataSyncApi
+
+Platform and migration: EnApi, MasterConfigurationApi, EaseMigrationApi
+
+## Non-API integration transports
+
+- [EDI ANSI 834](https://www.employeenavigator.com/marketplace/product/edi-834-): the HIPAA benefit
+  enrollment and maintenance transaction set; the primary carrier exchange.
+- SSL file upload over HTTPS, and SFTP/FTP with PGP with optional approved static IPs.
+
+## Docs
+
+- [Integrations overview](https://www.employeenavigator.com/modern-integrations/)
+- [The definitive guide to integrations](https://www.employeenavigator.com/the-definitive-guide-to-integrations-with-employee-navigator/)
+- [Partner marketplace](https://www.employeenavigator.com/marketplace/)
+- [Security and compliance](https://www.employeenavigator.com/security/): SOC 2 Type II, HITRUST, HIPAA,
+  GDPR, CCPA, 23 NYCRR 500, NIST; Microsoft Azure; TLS 1.2+.
+- [Master Terms](https://www.employeenavigator.com/master-terms)
+- [Pricing](https://www.employeenavigator.com/pricing/)
+- [Help center](https://support.employeenavigator.com/hc/en-us)
+- [Blog](https://www.employeenavigator.com/blog/)
+- [Contact](https://www.employeenavigator.com/contact/) — sales@employeenavigator.com, 301-583-5180
+
+## API Evangelist profile
+
+- [apis.yml](https://raw.githubusercontent.com/api-evangelist/employeenavigator/refs/heads/main/apis.yml)
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/employeenavigator/refs/heads/main/authentication/employeenavigator-authentication.yml)
+- [OAuth scopes](https://raw.githubusercontent.com/api-evangelist/employeenavigator/refs/heads/main/scopes/employeenavigator-scopes.yml)
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/employeenavigator/refs/heads/main/conformance/employeenavigator-conformance.yml)
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/employeenavigator/refs/heads/main/conventions/employeenavigator-conventions.yml)
+- [Well-known index](https://raw.githubusercontent.com/api-evangelist/employeenavigator/refs/heads/main/well-known/employeenavigator-well-known.yml)
+- [Trust center](https://raw.githubusercontent.com/api-evangelist/employeenavigator/refs/heads/main/security/employeenavigator-trust-center.yml)
+
+---
+generated: 2026-08-06
+method: generated
+source: apis.yml + repo artifacts + https://www.employeenavigator.com/identity/.well-known/openid-configuration
+note: This is an independent third-party profile by API Evangelist, not published by Employee Navigator.

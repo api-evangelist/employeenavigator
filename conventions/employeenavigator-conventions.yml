@@ -1,0 +1,101 @@
+generated: '2026-08-06'
+method: probed
+source: https://www.employeenavigator.com/identity/.well-known/openid-configuration
+notes: >-
+  Employee Navigator publishes no public OpenAPI, no public API reference and no
+  developer portal — the Company Integration API and Company Benefit Details API
+  reference is released to carriers, payroll companies and other partners through
+  technical onboarding. Only conventions observable from anonymous probes and the
+  public identity discovery document are recorded here. Everything else is marked
+  unknown rather than guessed; NOTHING below is inferred from a comparable
+  vendor. Because idempotency could not be observed, no Idempotency pointer is
+  wired in apis.yml.
+authentication:
+  style: OAuth 2.0 bearer token via OpenID Connect
+  issuer: https://www.employeenavigator.com/identity
+  token_endpoint: https://www.employeenavigator.com/identity/connect/token
+  partner_grant: clientCredentials
+  interactive_grant: authorizationCode
+  pkce: S256
+  sender_constraining: DPoP advertised
+  scope_model: >-
+    One named scope per API service (66 published). A partner token is scoped to
+    the specific services it is provisioned for — e.g. CarrierCompanyIntegrationApi,
+    HealthPlanManagementApi, EmployeeProfilePayrollApi, WebhookApi.
+  see: authentication/employeenavigator-authentication.yml
+service_root:
+  url: https://www.employeenavigator.com/api
+  health_check:
+    path: /api/health
+    method: GET
+    auth: none
+    status: 200
+    content_type: text/plain
+    body: Healthy
+  observed_behavior: >-
+    The service root returns 403 Forbidden (IIS) to anonymous requests and
+    unmatched /api/* paths return a bare HTTP 404 with a zero-length body — not
+    the marketing SPA soft-404 — confirming /api is a distinctly routed
+    application rather than a wildcard catch-all.
+versioning:
+  scheme: unknown
+  evidence: >-
+    The 2022 API launch announcement states the platform "can accommodate
+    versions of APIs to greatly reduce maintenance", but no version segment,
+    header or date scheme is publicly documented. /api/v1 returns 404.
+idempotency:
+  supported: unknown
+  evidence: no public specification or documentation; no Idempotency-Key surface observable anonymously
+pagination:
+  style: unknown
+  evidence: no public specification
+error_envelope:
+  format: unknown
+  evidence: no public error reference; all resource paths are OAuth-gated
+rate_limits:
+  documented: false
+  evidence: no public rate limit documentation or headers observable anonymously
+request_tracing:
+  header: unknown
+events:
+  webhooks:
+    published_publicly: false
+    evidence: >-
+      A WebhookApi scope is published in the identity discovery document, along
+      with MasterPushNotificationApi, CarrierPushNotificationApi,
+      QuotingPushNotificationApi and eight further *NotificationApi scopes. This
+      is strong evidence that a webhook and notification surface exists, but no
+      event catalog, payload schema, delivery or signature contract is published
+      publicly, so no Webhooks pointer is wired in apis.yml.
+  see: scopes/employeenavigator-scopes.yml
+non_api_transports:
+  - name: EDI ANSI 834
+    description: >-
+      HIPAA benefit enrollment and maintenance transaction set; the primary
+      carrier exchange for preconfigured carriers.
+    docs: https://www.employeenavigator.com/marketplace/product/edi-834-
+  - name: SSL file upload
+    description: Customer data upload over HTTPS.
+  - name: SFTP/FTP with PGP
+    description: Optionally restricted to approved static IP addresses.
+cross_links:
+  authentication: authentication/employeenavigator-authentication.yml
+  scopes: scopes/employeenavigator-scopes.yml
+  conformance: conformance/employeenavigator-conformance.yml
+  well_known: well-known/employeenavigator-well-known.yml
+  domain_security: security/employeenavigator-domain-security.yml
+  trust_center: security/employeenavigator-trust-center.yml
+x-evidence:
+  fetched: '2026-08-06'
+  probes:
+  - url: https://www.employeenavigator.com/api/health
+    http_status: 200
+    content_type: text/plain
+  - url: https://www.employeenavigator.com/api
+    http_status: 403
+  - url: https://www.employeenavigator.com/api/v1
+    http_status: 404
+  - url: https://www.employeenavigator.com/api/swagger/v1/swagger.json
+    http_status: 404
+  - url: https://www.employeenavigator.com/api/openapi.json
+    http_status: 404

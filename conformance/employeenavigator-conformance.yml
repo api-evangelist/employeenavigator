@@ -1,0 +1,127 @@
+generated: '2026-08-06'
+method: probed
+source: https://www.employeenavigator.com/identity/.well-known/openid-configuration
+notes: >-
+  Conformance is asserted from two verified public sources only: the anonymously
+  served OpenID Connect discovery document (every identity/authorization standard
+  below), and the Employee Navigator security page (the compliance program).
+  Employee Navigator publishes no public OpenAPI, so REST-level conventions
+  (RFC 9457 problem details, pagination, idempotency, JSON:API) could not be
+  observed and are recorded as unknown rather than false.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: 'OAuth 2.0 authorization, token, introspection and revocation endpoints
+    advertised in the OIDC discovery document'
+- id: oidc-core
+  conforms: true
+  evidence: 'issuer, authorization_endpoint, token_endpoint, userinfo_endpoint,
+    jwks_uri, id_token_signing_alg_values_supported (RS256) and the standard
+    claim set are all published'
+- id: oidc-discovery-1.0
+  conforms: true
+  evidence: /identity/.well-known/openid-configuration returns 200 application/json
+- id: rfc7517-jwks
+  conforms: true
+  evidence: jwks_uri serves a 5-key RSA/RS256 JSON Web Key Set (200, application/json)
+- id: rfc7636-pkce
+  conforms: true
+  evidence: 'code_challenge_methods_supported: [plain, S256]'
+- id: rfc9449-dpop
+  conforms: true
+  evidence: dpop_signing_alg_values_supported advertises 9 RSA/PS/EC algorithms
+- id: rfc8628-device-authorization-grant
+  conforms: true
+  evidence: 'device_authorization_endpoint published and
+    urn:ietf:params:oauth:grant-type:device_code in grant_types_supported'
+- id: oidc-ciba
+  conforms: true
+  evidence: 'backchannel_authentication_endpoint published, poll delivery mode,
+    urn:openid:params:grant-type:ciba grant'
+- id: rfc7662-token-introspection
+  conforms: true
+  evidence: introspection_endpoint published (returns 405 to GET, i.e. POST-only as specified)
+- id: rfc7009-token-revocation
+  conforms: true
+  evidence: revocation_endpoint published
+- id: oidc-frontchannel-logout
+  conforms: true
+  evidence: 'frontchannel_logout_supported: true, frontchannel_logout_session_supported: true'
+- id: oidc-backchannel-logout
+  conforms: true
+  evidence: 'backchannel_logout_supported: true, backchannel_logout_session_supported: true'
+- id: oidc-session-management
+  conforms: true
+  evidence: check_session_iframe and end_session_endpoint published
+- id: rfc9207-authorization-response-iss
+  conforms: true
+  evidence: 'authorization_response_iss_parameter_supported: true'
+- id: rfc9101-jwt-secured-authorization-request
+  conforms: true
+  evidence: 'request_parameter_supported: true with 12 request_object_signing_alg_values_supported'
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: false
+  evidence: '/identity/.well-known/oauth-authorization-server returns 404; the
+    equivalent metadata is served only at the OIDC discovery path'
+- id: fapi
+  conforms: false
+  evidence: 'private_key_jwt and tls_client_auth are absent from
+    token_endpoint_auth_methods_supported (only client_secret_basic /
+    client_secret_post), and the implicit grant plus plain PKCE remain enabled —
+    all disallowed by FAPI 1.0 Advanced'
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt resolves to the marketing SPA 404 page
+- id: ansi-asc-x12-834
+  conforms: true
+  evidence: 'Employee Navigator operates EDI ANSI 834 benefit enrollment and
+    maintenance exchange with preconfigured carriers; documented on the
+    integrations guide and marketplace EDI 834 partner listings'
+- id: hipaa
+  conforms: true
+  evidence: 'security page states annual HIPAA audit; EDI 834 is the HIPAA-mandated
+    enrollment transaction set'
+- id: soc2-type-ii
+  conforms: true
+  evidence: security page states annual SOC 2 Type II audit
+- id: hitrust
+  conforms: true
+  evidence: security page lists HITRUST (Health Information Trust Alliance) certification
+- id: gdpr
+  conforms: true
+  evidence: security page states annual GDPR audit
+- id: ccpa
+  conforms: true
+  evidence: security page states annual CCPA audit
+- id: nydfs-23-nycrr-500
+  conforms: true
+  evidence: security page states annual 23 NYCRR 500 audit
+- id: nist
+  conforms: true
+  evidence: security page states annual NIST audit (framework revision not named)
+- id: rfc9457-problem-details
+  conforms: unknown
+  evidence: no public OpenAPI or error reference; API responses are OAuth-gated
+- id: json-api
+  conforms: unknown
+  evidence: no public OpenAPI
+- id: scim2
+  conforms: unknown
+  evidence: no SCIM paths documented publicly
+- id: fhir
+  conforms: false
+  evidence: 'benefits administration platform; exchange is EDI 834 and a proprietary
+    partner REST API, not FHIR'
+x-evidence:
+  fetched: '2026-08-06'
+  sources:
+  - url: https://www.employeenavigator.com/identity/.well-known/openid-configuration
+    http_status: 200
+  - url: https://www.employeenavigator.com/identity/.well-known/openid-configuration/jwks
+    http_status: 200
+  - url: https://www.employeenavigator.com/identity/connect/introspect
+    http_status: 405
+  - url: https://www.employeenavigator.com/identity/.well-known/oauth-authorization-server
+    http_status: 404
+  - url: https://www.employeenavigator.com/security/
+    http_status: 200

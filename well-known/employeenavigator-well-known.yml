@@ -1,0 +1,70 @@
+generated: '2026-08-06'
+method: searched
+source: https://www.employeenavigator.com/identity/.well-known/openid-configuration
+host: https://www.employeenavigator.com
+notes: >-
+  employeenavigator.com serves a wildcard-DNS marketing SPA on every unclaimed
+  hostname and subdomain (api., developers., developer., docs., apidocs.,
+  status., trust. and an arbitrary control label all resolve to the same
+  Imperva/Incapsula address and return an identical 41,076-byte HTML shell).
+  That SPA also answers HTTP 200 with a 21,549-byte HTML 404 page for every
+  unmatched path, so a bare 200 on a /.well-known/* path is NOT evidence of a
+  document here. Every row below was diffed against a random control path; only
+  rows recorded with a JSON content-type returned a real document. The one live
+  discovery surface is the Duende IdentityServer instance mounted at
+  /identity on the apex web host.
+documents:
+- path: /identity/.well-known/openid-configuration
+  status: 200
+  content_type: application/json; charset=UTF-8
+  bytes: 4241
+  file: employeenavigator-openid-configuration.json
+  spec: OpenID Connect Discovery 1.0
+- path: /identity/.well-known/openid-configuration/jwks
+  status: 200
+  content_type: application/json
+  bytes: 10133
+  file: employeenavigator-jwks.json
+  spec: RFC 7517 JSON Web Key Set
+  keys: 5
+  key_types:
+  - RSA/RS256/sig
+- path: /identity/.well-known/oauth-authorization-server
+  status: 404
+  note: RFC 8414 metadata not served separately; OIDC discovery carries the same data
+- path: /identity/.well-known/oauth-protected-resource
+  status: 404
+- path: /.well-known/security.txt
+  status: 200
+  soft_404: true
+  note: redirects to the marketing SPA 404 page; no RFC 9116 document
+- path: /.well-known/openid-configuration
+  status: 200
+  soft_404: true
+  note: marketing SPA 404 shell (text/html, 21549 bytes) — not a discovery document
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  soft_404: true
+- path: /.well-known/oauth-protected-resource
+  status: 200
+  soft_404: true
+- path: /.well-known/api-catalog
+  status: 200
+  soft_404: true
+- path: /.well-known/ai-plugin.json
+  status: 200
+  soft_404: true
+- path: /.well-known/agent-card.json
+  status: 200
+  soft_404: true
+  note: HTML body — rejected, no A2A agent card published
+- path: /.well-known/agent.json
+  status: 200
+  soft_404: true
+  note: HTML body — rejected, no legacy A2A agent card published
+x-evidence:
+  fetched: '2026-08-06'
+  control_path: /zzzz-nonexistent-control
+  control_status: 200
+  control_bytes: 21549
+  control_content_type: text/html

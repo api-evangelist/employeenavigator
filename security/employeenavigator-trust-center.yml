@@ -1,0 +1,62 @@
+generated: '2026-08-06'
+method: searched
+probe: true
+source: https://www.employeenavigator.com/security/
+url: https://www.employeenavigator.com/security/
+summary: >-
+  Employee Navigator publishes a single public security and compliance page
+  rather than a hosted trust portal. It names the audit and certification program,
+  the cloud platform and its encryption posture, and the operational controls,
+  but it does not offer document download, subgroup reporting, or a
+  vulnerability-disclosure channel.
+certifications:
+- SOC 2 Type II
+- HITRUST
+- HIPAA
+- GDPR
+- CCPA
+- 23 NYCRR 500 (NYDFS)
+- NIST
+audit_cadence: annual
+infrastructure:
+  cloud: Microsoft Azure
+  managed_hosting: Logicworks (managed Azure external public cloud datacenter hosting)
+  encryption_at_rest: Azure Storage Service Encryption, AES 256-bit, Microsoft-managed keys
+  encryption_in_transit: TLS 1.2+ on all connections; HTTP auto-redirects to HTTPS
+controls:
+- Formalized hiring practice with third-party background checks on all employees
+- Least-privilege access management with mandatory two-factor authentication
+- Physical datacenter access expressly prohibited to staff
+- Implicit deny-all network access control with perimeter firewall and VPN appliances
+- Customer environment isolation (licensees may access only their assigned environment)
+- Centralized SIEM log correlation, analysis and alerting with 24x7 security engineer response
+- Disk-to-disk on-site backup, daily cross-datacenter replication, high-availability database cluster
+data_handling:
+- All licensee data classified equally as sensitive; no data classification performed on behalf of licensees
+- Employee Navigator staff do not access licensee data outside explicit customer request
+- No customer data shared with external third parties unless customer-requested or legally required
+- 'Partner transport protocols: API, SSL file upload, and SFTP/FTP with PGP, with optional approved static IPs'
+gaps:
+- No /.well-known/security.txt (RFC 9116)
+- No published vulnerability-disclosure or responsible-disclosure policy
+- No bug bounty program found on HackerOne, Bugcrowd or Intigriti
+- No named security contact address; the only published address is sales@employeenavigator.com
+- No downloadable attestation reports or hosted trust portal
+- No public status page (employeenavigator.statuspage.io returns page-deleted)
+evidence:
+- source: https://www.employeenavigator.com/security/
+  http_status: 200
+  keywords:
+  - soc 2 type ii
+  - hitrust
+  - nist
+  - gdpr
+  - 23 nycrr 500
+  - ccpa
+  - hipaa
+  - compliance certifications and attestations
+x-evidence:
+  fetched: '2026-08-06'
+  url: https://www.employeenavigator.com/security/
+  http_status: 200
+  content_type: text/html

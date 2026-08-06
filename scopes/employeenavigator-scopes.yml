@@ -1,0 +1,342 @@
+generated: '2026-08-06'
+method: probed
+source: https://www.employeenavigator.com/identity/.well-known/openid-configuration
+docs: https://www.employeenavigator.com/security/
+notes: >-
+  The 66 scopes below are the complete scopes_supported array published
+  anonymously by Employee Navigator's OpenID Connect discovery document. They are
+  recorded verbatim; the human-readable descriptions are API Evangelist
+  expansions of the scope name, not provider copy — Employee Navigator publishes
+  no public scope reference page. Each non-standard scope names a distinct
+  Employee Navigator API service, which is the clearest public map of the
+  partner API surface available without partner credentials.
+schemes:
+- name: OAuth2
+  source: well-known/employeenavigator-openid-configuration.json
+  issuer: https://www.employeenavigator.com/identity
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://www.employeenavigator.com/identity/connect/authorize
+    tokenUrl: https://www.employeenavigator.com/identity/connect/token
+  - flow: clientCredentials
+    tokenUrl: https://www.employeenavigator.com/identity/connect/token
+groups:
+- id: agency
+  description: "Agency management system services — agency management, configuration and notifications."
+  scope_count: 3
+- id: carrier
+  description: "Insurance carrier partner services — company integration and connection, configuration, notifications, push notifications, data audit, data sync, member benefit and carrier list management."
+  scope_count: 9
+- id: cobra
+  description: "COBRA administration configuration and notification services."
+  scope_count: 2
+- id: company
+  description: "Company management, company configuration and company identifier replacement services."
+  scope_count: 3
+- id: employee-benefits
+  description: "Employee benefits management service."
+  scope_count: 1
+- id: employee-profile
+  description: "Employee profile read, configuration, management and the payroll-facing employee profile services."
+  scope_count: 6
+- id: evidence-of-insurability
+  description: "Evidence of Insurability (EOI) services and their notifications."
+  scope_count: 2
+- id: master
+  description: "Master (Employee Navigator platform tenant) services — company integration, configuration, notification, push notification, data audit and data sync."
+  scope_count: 6
+- id: migration
+  description: "Ease platform migration service."
+  scope_count: 1
+- id: oidc-standard
+  description: "OpenID Connect standard scopes."
+  scope_count: 4
+- id: payroll
+  description: "Payroll partner services — company integration, employee notification and payroll notifications, including the named Paycor company integration."
+  scope_count: 4
+- id: plan
+  description: "Plan list, health, supplemental, medical savings, cafeteria, group life, group disability, voluntary life and voluntary disability plan configuration and management services."
+  scope_count: 17
+- id: platform
+  description: "General Employee Navigator platform API scope."
+  scope_count: 1
+- id: quoting
+  description: "Quoting engine services — quote census, company integration, configuration, notifications and push notifications."
+  scope_count: 5
+- id: rates
+  description: "Benefit rates service."
+  scope_count: 1
+- id: webhooks
+  description: "Webhook subscription and delivery management service."
+  scope_count: 1
+scope_count: 66
+scopes:
+- scope: openid
+  description: "OpenID Connect standard scope; requests an ID token for the authenticated subject."
+  group: oidc-standard
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: profile
+  description: "OpenID Connect standard scope; requests the profile claim set (name, family_name, given_name, nickname, birthdate, locale and related claims)."
+  group: oidc-standard
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: email
+  description: "OpenID Connect standard scope; requests the email and email_verified claims."
+  group: oidc-standard
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: EnApi
+  description: "Access to the Employee Navigator En API service."
+  group: platform
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: MasterCompanyIntegrationApi
+  description: "Access to the Employee Navigator Master Company Integration API service."
+  group: master
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: MasterConfigurationApi
+  description: "Access to the Employee Navigator Master Configuration API service."
+  group: master
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: MasterNotificationApi
+  description: "Access to the Employee Navigator Master Notification API service."
+  group: master
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: MasterPushNotificationApi
+  description: "Access to the Employee Navigator Master Push Notification API service."
+  group: master
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: MasterDataAuditApi
+  description: "Access to the Employee Navigator Master Data Audit API service."
+  group: master
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: MasterDataSyncApi
+  description: "Access to the Employee Navigator Master Data Sync API service."
+  group: master
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CobraConfigurationApi
+  description: "Access to the Employee Navigator Cobra Configuration API service."
+  group: cobra
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CobraNotificationApi
+  description: "Access to the Employee Navigator Cobra Notification API service."
+  group: cobra
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CarrierCompanyIntegrationApi
+  description: "Access to the Employee Navigator Carrier Company Integration API service."
+  group: carrier
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CarrierCompanyIntegrationConnectionApi
+  description: "Access to the Employee Navigator Carrier Company Integration Connection API service."
+  group: carrier
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CarrierConfigurationApi
+  description: "Access to the Employee Navigator Carrier Configuration API service."
+  group: carrier
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CarrierNotificationApi
+  description: "Access to the Employee Navigator Carrier Notification API service."
+  group: carrier
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CarrierPushNotificationApi
+  description: "Access to the Employee Navigator Carrier Push Notification API service."
+  group: carrier
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CarrierDataAuditApi
+  description: "Access to the Employee Navigator Carrier Data Audit API service."
+  group: carrier
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CarrierDataSyncApi
+  description: "Access to the Employee Navigator Carrier Data Sync API service."
+  group: carrier
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: QuoteCensusApi
+  description: "Access to the Employee Navigator Quote Census API service."
+  group: quoting
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: AgencyManagementApi
+  description: "Access to the Employee Navigator Agency Management API service."
+  group: agency
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: QuotingCompanyIntegrationApi
+  description: "Access to the Employee Navigator Quoting Company Integration API service."
+  group: quoting
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: QuotingConfigurationApi
+  description: "Access to the Employee Navigator Quoting Configuration API service."
+  group: quoting
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: QuotingNotificationApi
+  description: "Access to the Employee Navigator Quoting Notification API service."
+  group: quoting
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: QuotingPushNotificationApi
+  description: "Access to the Employee Navigator Quoting Push Notification API service."
+  group: quoting
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: AgencyConfigurationApi
+  description: "Access to the Employee Navigator Agency Configuration API service."
+  group: agency
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: AgencyNotificationApi
+  description: "Access to the Employee Navigator Agency Notification API service."
+  group: agency
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: PayrollCompanyIntegrationApi
+  description: "Access to the Employee Navigator Payroll Company Integration API service."
+  group: payroll
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: PayrollEmployeeNotificationApi
+  description: "Access to the Employee Navigator Payroll Employee Notification API service."
+  group: payroll
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: PayrollNotificationApi
+  description: "Access to the Employee Navigator Payroll Notification API service."
+  group: payroll
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CarrierMemberBenefitApi
+  description: "Access to the Employee Navigator Carrier Member Benefit API service."
+  group: carrier
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: EvidenceOfInsurabilityApi
+  description: "Access to the Employee Navigator Evidence Of Insurability API service."
+  group: evidence-of-insurability
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: EvidenceOfInsurabilityNotificationApi
+  description: "Access to the Employee Navigator Evidence Of Insurability Notification API service."
+  group: evidence-of-insurability
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: EmployeeBenefitsManagementApi
+  description: "Access to the Employee Navigator Employee Benefits Management API service."
+  group: employee-benefits
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: RatesServiceApi
+  description: "Access to the Employee Navigator Rates Service API service."
+  group: rates
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: WebhookApi
+  description: "Access to the Employee Navigator Webhook API service."
+  group: webhooks
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CompanyManagementApi
+  description: "Access to the Employee Navigator Company Management API service."
+  group: company
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CompanyConfigurationApi
+  description: "Access to the Employee Navigator Company Configuration API service."
+  group: company
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: PlanListConfigurationApi
+  description: "Access to the Employee Navigator Plan List Configuration API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: PlanListManagementApi
+  description: "Access to the Employee Navigator Plan List Management API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: HealthPlanConfigurationApi
+  description: "Access to the Employee Navigator Health Plan Configuration API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: SupplementalPlanConfigurationApi
+  description: "Access to the Employee Navigator Supplemental Plan Configuration API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: MedicalSavingsPlanConfigurationApi
+  description: "Access to the Employee Navigator Medical Savings Plan Configuration API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: VoluntaryLifePlanConfigurationApi
+  description: "Access to the Employee Navigator Voluntary Life Plan Configuration API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: VoluntaryDisabilityPlanConfigurationApi
+  description: "Access to the Employee Navigator Voluntary Disability Plan Configuration API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: EmployeeProfileApi
+  description: "Access to the Employee Navigator Employee Profile API service."
+  group: employee-profile
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: EmployeeProfileConfigurationApi
+  description: "Access to the Employee Navigator Employee Profile Configuration API service."
+  group: employee-profile
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: EmployeeProfileManagementApi
+  description: "Access to the Employee Navigator Employee Profile Management API service."
+  group: employee-profile
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: EmployeeProfilePayrollApi
+  description: "Access to the Employee Navigator Employee Profile Payroll API service."
+  group: employee-profile
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: EmployeeProfilePayrollConfigurationApi
+  description: "Access to the Employee Navigator Employee Profile Payroll Configuration API service."
+  group: employee-profile
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: EmployeeProfilePayrollManagementApi
+  description: "Access to the Employee Navigator Employee Profile Payroll Management API service."
+  group: employee-profile
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: HealthPlanManagementApi
+  description: "Access to the Employee Navigator Health Plan Management API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: SupplementalPlanManagementApi
+  description: "Access to the Employee Navigator Supplemental Plan Management API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: GroupLifePlanConfigurationApi
+  description: "Access to the Employee Navigator Group Life Plan Configuration API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: EaseMigrationApi
+  description: "Access to the Employee Navigator Ease Migration API service."
+  group: migration
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: GroupDisabilityPlanConfigurationApi
+  description: "Access to the Employee Navigator Group Disability Plan Configuration API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: GroupLifePlanManagementApi
+  description: "Access to the Employee Navigator Group Life Plan Management API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: VoluntaryLifePlanManagementApi
+  description: "Access to the Employee Navigator Voluntary Life Plan Management API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: GroupDisabilityPlanManagementApi
+  description: "Access to the Employee Navigator Group Disability Plan Management API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CafeteriaPlanManagementApi
+  description: "Access to the Employee Navigator Cafeteria Plan Management API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CafeteriaPlanConfigurationApi
+  description: "Access to the Employee Navigator Cafeteria Plan Configuration API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: VoluntaryDisabilityPlanManagementApi
+  description: "Access to the Employee Navigator Voluntary Disability Plan Management API service."
+  group: plan
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: PaycorCompanyIntegrationApi
+  description: "Access to the Employee Navigator Paycor Company Integration API service."
+  group: payroll
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CarrierListManagementApi
+  description: "Access to the Employee Navigator Carrier List Management API service."
+  group: carrier
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: CompanyIdentifierReplacementApi
+  description: "Access to the Employee Navigator Company Identifier Replacement API service."
+  group: company
+  sources: [well-known/employeenavigator-openid-configuration.json]
+- scope: offline_access
+  description: "OpenID Connect standard scope; requests a refresh token for long-lived unattended access."
+  group: oidc-standard
+  sources: [well-known/employeenavigator-openid-configuration.json]
+x-evidence:
+  fetched: '2026-08-06'
+  url: https://www.employeenavigator.com/identity/.well-known/openid-configuration
+  http_status: 200
+  content_type: application/json; charset=UTF-8

@@ -1,18 +1,83 @@
 aid: employeenavigator
 name: Employee Navigator
-description: 'Employee Navigator is a company surfaced via the API Evangelist harvest backlog (source:
-  insurance-benefits-admin) and added to the network as a stub for full-pipeline profiling.'
+description: 'Employee Navigator is a Bethesda, Maryland benefits administration and
+  HR software platform used by insurance brokers, agencies and employers to run open
+  enrollment, new hire onboarding, ACA reporting, HR management, PTO tracking and
+  integrated payroll. Its integration layer connects employer benefit data to more
+  than 600 insurance carriers, payroll providers, TPAs and agency management systems
+  through EDI ANSI 834 files, data-exchange feeds and a partner REST API program.
+  Employee Navigator published a Company Integration API and a Company Benefit Details
+  API for carriers and benefit providers, secured by an OpenID Connect / OAuth 2.0
+  authorization server that publicly advertises a per-service scope surface covering
+  company integration, plan configuration and management, employee profile, payroll,
+  quoting, agency management, evidence of insurability, COBRA, data audit, data sync,
+  notifications and webhooks. The API reference itself is partner-gated; the platform
+  runs on Microsoft Azure and is audited annually for SOC 2 Type II, HITRUST, NIST,
+  GDPR, CCPA and 23 NYCRR 500.'
 url: https://raw.githubusercontent.com/api-evangelist/employeenavigator/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:insurance-benefits-admin
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-06'
 modified: '2026-08-06'
+image: https://www.employeenavigator.com/uploads/2021/10/OG-image-employee-navigator.png
 tags:
 - Company
-apis: []
+- Benefits Administration
+- Human Resources
+- Insurance
+- Employee Benefits
+- Payroll
+- Health Insurance
+- HRIS
+- Open Enrollment
+- ACA Compliance
+- Identity
+- OpenID Connect
+apis:
+- name: Employee Navigator Identity (OpenID Connect)
+  description: 'The Employee Navigator OpenID Connect / OAuth 2.0 authorization server
+    that fronts every Employee Navigator API service. Its discovery document is
+    served anonymously and advertises authorization code, client credentials, refresh
+    token, implicit, device code and CIBA grants, PKCE (S256), DPoP, token
+    introspection, token revocation, and front-channel plus back-channel logout, along
+    with a named scope for each platform API service.'
+  humanURL: https://www.employeenavigator.com/security/
+  baseURL: https://www.employeenavigator.com/identity
+  tags:
+  - OpenID Connect
+  - OAuth 2.0
+  - Identity
+  - Authentication
+  properties:
+  - type: OpenIDConnect
+    url: https://www.employeenavigator.com/identity/.well-known/openid-configuration
+  - type: Authentication
+    url: authentication/employeenavigator-authentication.yml
+  - type: OAuthScopes
+    url: scopes/employeenavigator-scopes.yml
+- name: Employee Navigator Partner API
+  description: 'The Employee Navigator partner REST API program — the Company
+    Integration API and the Company Benefit Details API announced in 2022 — used by
+    insurance carriers, benefit providers, payroll companies, quoting engines and
+    agency management systems to exchange company, plan and member benefit data in
+    real time. The service root is live and answers an anonymous health check; every
+    resource path is OAuth-protected and the API reference is released to partners
+    through Employee Navigator''s technical onboarding rather than a public developer
+    portal.'
+  humanURL: https://www.employeenavigator.com/modern-integrations/
+  baseURL: https://www.employeenavigator.com/api
+  tags:
+  - Benefits Administration
+  - Insurance
+  - Employee Benefits
+  - Payroll
+  - Integration
+  properties:
+  - type: Authentication
+    url: authentication/employeenavigator-authentication.yml
+  - type: OAuthScopes
+    url: scopes/employeenavigator-scopes.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -21,3 +86,36 @@ maintainers:
 common:
 - type: Website
   url: https://www.employeenavigator.com/
+- type: Blog
+  url: https://www.employeenavigator.com/blog/
+- type: Pricing
+  url: https://www.employeenavigator.com/pricing/
+- type: Login
+  url: https://www.employeenavigator.com/benefits/Account/Login
+- type: TermsOfService
+  url: https://www.employeenavigator.com/master-terms
+- type: Support
+  url: https://support.employeenavigator.com/hc/en-us
+- type: Compliance
+  url: https://www.employeenavigator.com/security/
+- type: TrustCenter
+  url: security/employeenavigator-trust-center.yml
+- type: DomainSecurity
+  url: security/employeenavigator-domain-security.yml
+- type: Authentication
+  url: authentication/employeenavigator-authentication.yml
+- type: OAuthScopes
+  url: scopes/employeenavigator-scopes.yml
+- type: WellKnown
+  url: well-known/employeenavigator-well-known.yml
+- type: Conformance
+  url: conformance/employeenavigator-conformance.yml
+- type: Conventions
+  url: conventions/employeenavigator-conventions.yml
+- type: LLMsTxt
+  url: llms/employeenavigator-llms.txt
+x-enrichment:
+  date: '2026-08-06'
+  status: enriched
+  artifacts_added: 10
+  pass: local-v1
