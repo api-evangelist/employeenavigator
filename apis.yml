@@ -17,7 +17,7 @@ description: 'Employee Navigator is a Bethesda, Maryland benefits administration
 url: https://raw.githubusercontent.com/api-evangelist/employeenavigator/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:insurance-benefits-admin
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-08-06'
 modified: '2026-08-06'
 image: https://www.employeenavigator.com/uploads/2021/10/OG-image-employee-navigator.png
