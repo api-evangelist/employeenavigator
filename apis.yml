@@ -46,6 +46,10 @@ apis:
   baseURL: https://www.employeenavigator.com/identity
   tags:
   - OpenID Connect
+  - Authentication
+  - Identity
+  tags_raw:
+  - OpenID Connect
   - OAuth 2.0
   - Identity
   - Authentication
