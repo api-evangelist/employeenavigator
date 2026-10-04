@@ -58,7 +58,6 @@ tags:
 - Open Enrollment
 - ACA Compliance
 - Identity
-- OpenID Connect
 apis:
 - name: Employee Navigator Identity (OpenID Connect)
   description: 'The Employee Navigator OpenID Connect / OAuth 2.0 authorization server
@@ -148,3 +147,5 @@ x-enrichment:
   status: enriched
   artifacts_added: 10
   pass: local-v1
+x-tags-removed:
+- OpenID Connect
